@@ -14,7 +14,7 @@ def nova_igra():
 
     bottle.redirect(novi_url)
 
-@bottle.get("/igra/<id_igre: int>/")
+@bottle.get("/igra/<id_igre:int>/")
 def pokazi_igro(id_igre):
     trenutna_igra, trenutno_stanje = vislice.igre[id_igre]
 
@@ -24,6 +24,10 @@ def pokazi_igro(id_igre):
 def ugibaj_na_igri(id_igre):
     ugibana = bottle.request.forms["crka"]
     vislice.ugibaj(id_igre, ugibana)
+
+@bottle.route("/img/<file_path:path>")
+def img_static(file_path):
+    return bottle.static_file(file_path, "img")
 
 
 bottle.run(reloader=True, debug=True)

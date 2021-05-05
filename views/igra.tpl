@@ -13,9 +13,9 @@
     <h4>{{ igra.napačne_črke() }}</h4>
 
     <h3>Stopnja obešenosti</h3>
-    <h4>{{ igra.število_napak() }}</h4>
+    <h4>{{ igra.št_napak() }}</h4>
 
-    <img src="img/{{ igra.število_napak() }}.jpg" alt="Stopnja obešenosti"></img>
+    <img src="img/{{ igra.št_napak() }}.jpg" alt="Stopnja obešenosti"></img>
 
 % if stanje == ZMAGA:
     <h3>Bravo zmagal si!</h3>
