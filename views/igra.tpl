@@ -1,3 +1,4 @@
+%from Modul import ZMAGA,PORAZ
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,12 +17,27 @@
 
     <img src="img/{{ igra.število_napak() }}.jpg" alt="Stopnja obešenosti"></img>
 
+% if stanje == ZMAGA:
+    <h3>Bravo zmagal si!</h3>
+    <form action="/igra/" method="post">
+        <button type="submit">Nova igra</button>
+    </form>
+% elif stanje == PORAZ:
+    <h3>Izgubil si!</h3>
+    <h3>Pravilno geslo je bilo: {{ igra.geslo() }}</h3>
+    <form action="/igra/" method="post">
+        <button type="submit">Nova igra</button>
+    </form>
+% else:
     <form method="POST">
         <label> Vnesi črko: 
             <input type="text", name="crka">
         </label>
         <input type="submit">
     </form>
+
+% end
+
 
 </body>
 </html>
