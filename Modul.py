@@ -30,9 +30,9 @@ class Vislice:
         self.igre[id_igre] = (igra, novo_stanje)
 
 class Igra:
-    def __init__(self, geslo, črke=[]):
+    def __init__(self, geslo, črke=None):
         self.geslo = geslo
-        self.črke = črke 
+        self.črke = črke or list()
     
     def napačne_črke(self):
         seznam = []
