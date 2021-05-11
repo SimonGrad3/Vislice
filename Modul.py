@@ -1,12 +1,52 @@
+import json
+ 
 STEVILO_DOVOLJENIH_NAPAK = 10
 PRAVILNA_CRKA, PONOVLJENA_CRKA, NAPACNA_CRKA = "+", "o", "-"
 ZAČETEK = "S"
 ZMAGA, PORAZ = "W", "L"
 
+DATOTEKA_ZA_SHRANJEVANJE = "podatki.json"
+
 class Vislice:
-    def __init__(self):
-        self.igre = {}
-        self.max_id = 0
+    def __init__(self, zacente_igre=None, zacetni_id=0):
+        self.igre = zacente_igre or {}
+        self.max_id = zacetni_id
+
+    def pretvori_v_json_slovar(self):
+        slovar_iger = {}
+
+        for id_igre, (igra,stanje) in self.igre.items():
+            slovar_iger[id_igre] = (
+                igra.pretvori_v_json_slovar(),
+                stanje
+            )
+
+        return {
+            "max_id": self.max_id,
+            "igre": slovar_iger,
+        }
+
+    def zapisi_v_datoteko(self, datoteka):
+        with open(datoteka, "w") as out_file:
+            json_slovar = self.pretvori_v_json_slovar()
+            json.dump(json_slovar, out_file, indent=2)
+
+    @classmethod
+    def dobi_iz_json_slovarja(cls, slovar):
+        slovar_iger = {}
+        for id_igre, (igra_slovar, stanje) in slovar["igre"].items():
+            slovar_iger[int(id_igre)] = (
+                Igra.dobi_iz_json_slovarja(igra_slovar), stanje
+            )
+        
+        return Vislice(slovar_iger, slovar["max_id"])
+
+    @staticmethod
+    def preberi_iz_datoteke(datoteka):
+        with open(datoteka, "r") as in_file:
+            json_slovar = json.load(in_file)
+        return Vislice.dobi_iz_json_slovarja(json_slovar)
+
 
     def prost_id_igre(self):
         self.max_id += 1
@@ -28,6 +68,8 @@ class Vislice:
         
         #Pospravi v slovarju
         self.igre[id_igre] = (igra, novo_stanje)
+    
+
 
 class Igra:
     def __init__(self, geslo, črke=None):
@@ -88,6 +130,16 @@ class Igra:
             return PRAVILNA_CRKA
         elif črka not in self.geslo:
             return NAPACNA_CRKA
+
+    def pretvori_v_json_slovar(self):
+        return{
+            "geslo": self.geslo,
+            "crke" : self.črke,            
+        }
+
+    @staticmethod
+    def dobi_iz_json_slovarja(slovar):
+        return Igra(slovar["geslo"], slovar["crke"])
         
 with open("besede.txt", encoding="utf8") as f:
     bazen_besed = f.read().split()

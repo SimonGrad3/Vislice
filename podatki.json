@@ -1,0 +1,38 @@
+{
+  "max_id": 4,
+  "igre": {
+    "1": [
+      {
+        "geslo": "bodonski",
+        "crke": []
+      },
+      "S"
+    ],
+    "2": [
+      {
+        "geslo": "modrija",
+        "crke": []
+      },
+      "S"
+    ],
+    "3": [
+      {
+        "geslo": "samovrte\u010d",
+        "crke": []
+      },
+      "S"
+    ],
+    "4": [
+      {
+        "geslo": "urejevateljski",
+        "crke": [
+          "A",
+          "V",
+          "",
+          "C"
+        ]
+      },
+      "-"
+    ]
+  }
+}
