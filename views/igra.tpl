@@ -1,10 +1,7 @@
+
+%rebase("base.tpl")
+
 %from Modul import ZMAGA,PORAZ
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
     <h1>Vislice</h1>
     <h2>Igraš igro:</h2>
     <h3>Si v stanju {{ stanje }}</h3>
@@ -38,7 +35,3 @@
     </form>
 
 % end
-
-
-</body>
-</html>
