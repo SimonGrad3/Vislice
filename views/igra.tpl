@@ -1,5 +1,5 @@
 
-%rebase("base.tpl")
+%rebase("base.tpl", title="IGRAJ")
 
 %from Modul import ZMAGA,PORAZ
     <h1>Vislice</h1>
