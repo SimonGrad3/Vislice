@@ -23,8 +23,9 @@ def pokazi_igro(id_igre):
 @bottle.post("/igra/<id_igre:int>/")
 def ugibaj_na_igri(id_igre):
     ugibana = bottle.request.forms["crka"]
-    vislice.ugibaj(id_igre, ugibana)
-
+    vislice.ugibaj(id_igre, ugibana) 
+    bottle.redirect(f"/igra/{id_igre}/")
+    
 @bottle.route("/img/<file_path:path>")
 def img_static(file_path):
     return bottle.static_file(file_path, "img")

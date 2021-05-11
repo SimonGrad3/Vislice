@@ -10,6 +10,7 @@
     <h3>Si v stanju {{ stanje }}</h3>
 
     <h3>Pravilni del gesla:</h3>
+    <h4>{{ igra.pravilni_del_gesla() }}</h4>
     <h4>{{ igra.napačne_črke() }}</h4>
 
     <h3>Stopnja obešenosti</h3>
